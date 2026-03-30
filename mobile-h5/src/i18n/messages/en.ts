@@ -1,0 +1,63 @@
+export const en = {
+  'app.name': 'TG Mobile',
+
+  'login.subtitle':
+    'Firewall management console. Sign in with the same account as the web console.',
+  'login.title': 'Sign in',
+  'login.username': 'Username',
+  'login.password': 'Password',
+  'login.username_placeholder': 'Enter your username',
+  'login.password_placeholder': 'Enter your password',
+  'login.submit': 'Continue',
+  'login.hint': 'Connects to the device management API and shares the same session policy as PC.',
+  'login.toast_missing': 'Please enter your username and password.',
+  'login.toast_failed': 'Sign-in failed.',
+  'login.toast_success': 'Signed in.',
+  'login.toast_unknown': 'Unexpected error.',
+
+  'home.title': 'Dashboard',
+  'home.subtitle': 'Live data from the same /v1 APIs as PC.',
+  'home.logout': 'Sign out',
+
+  'common.loading': 'Loading…',
+  'common.load_failed': 'Failed to load.',
+  'common.request_failed': 'Request failed.',
+  'common.no_data': 'No data.',
+  'common.auto': 'Auto',
+
+  'panel.greeting': 'Greeting',
+  'panel.traffic_overview': 'Traffic overview',
+  'panel.traffic_trends': 'Traffic trends',
+  'panel.recent_activity': 'Recent activity',
+  'panel.traffic_map_summary': 'Traffic map (summary)',
+  'panel.firewalls': 'Firewalls',
+  'panel.object_summary': 'Object summary',
+  'panel.policy_summary': 'Policy summary',
+  'panel.policy_hit_deny': 'Policy hits by action (Deny)',
+  'panel.custom_statistics': 'Custom statistics',
+
+  'traffic.avg_rate': 'Avg rate',
+  'traffic.active_sessions': 'Active sessions',
+  'traffic.incoming': 'Incoming',
+  'traffic.outgoing': 'Outgoing',
+  'traffic.current_avg': 'Current average',
+  'traffic.trend_empty': 'No trend data.',
+  'traffic.total_traffic': 'Total traffic',
+  'traffic.dest_ip_count': 'Destination IPs',
+  'traffic.source_country_count': 'Source countries/regions',
+
+  'activity.none': 'No records.',
+  'activity.create': 'Create',
+  'activity.edit': 'Update',
+  'activity.delete': 'Delete',
+  'activity.import': 'Import',
+  'activity.export': 'Export',
+
+  'top.source_ips': 'Top source IPs',
+  'top.destination_ips': 'Top destination IPs',
+  'top.applications': 'Top applications',
+  'top.destination_countries': 'Top destination countries/regions',
+  'top.destination_fqdns': 'Top destination FQDNs',
+} as const;
+
+export type EnMessageKey = keyof typeof en;

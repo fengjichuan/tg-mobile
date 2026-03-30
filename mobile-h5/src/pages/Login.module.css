@@ -1,0 +1,220 @@
+.page {
+  min-height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px 36px;
+  overflow: hidden;
+}
+
+.page::before {
+  content: '';
+  position: absolute;
+  inset: -40% -20% auto;
+  height: 70%;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 0%,
+    rgba(59, 130, 246, 0.14),
+    transparent 65%
+  );
+  pointer-events: none;
+}
+
+.page::after {
+  content: '';
+  position: absolute;
+  inset: auto -30% -35%;
+  height: 55%;
+  background: radial-gradient(
+    ellipse 70% 50% at 80% 100%,
+    rgba(34, 211, 238, 0.07),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.brand {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.logo {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 16px;
+  border-radius: 14px;
+  background: linear-gradient(
+    145deg,
+    rgba(59, 130, 246, 0.35),
+    rgba(34, 211, 238, 0.12)
+  );
+  border: 1px solid rgba(139, 155, 180, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  margin: 10px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  padding: 26px 22px 20px;
+  border-radius: 20px;
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.cardTitle {
+  margin: 0 0 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.fieldLabel {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+/* antd-mobile Form：去列表分割线、控制间距 */
+.card :global(.adm-form) {
+  --border-inner: none;
+  --border-top: none;
+  --border-bottom: none;
+}
+
+.card :global(.adm-form .adm-list) {
+  --padding-left: 0;
+  --padding-right: 0;
+  --border-inner: none;
+  --border-top: none;
+  --border-bottom: none;
+  /* 避免 List 默认卡片底与内层输入区叠出「双层盒子」 */
+  --adm-color-background: transparent;
+}
+
+.card :global(.adm-form .adm-list-body),
+.card :global(.adm-form .adm-list-item) {
+  background: transparent !important;
+}
+
+.card :global(.adm-form-item.adm-form-item-vertical) {
+  margin-bottom: 18px;
+}
+
+.card :global(.adm-form-item.adm-form-item-vertical .adm-form-item-label) {
+  margin-bottom: 8px;
+  padding-bottom: 0;
+}
+
+.card :global(.adm-list-item-content) {
+  padding: 0 !important;
+  border-top: none !important;
+}
+
+.card :global(.adm-form-item-child) {
+  align-items: center;
+  min-height: 50px;
+  padding: 0 14px;
+  border-radius: 12px;
+  background: var(--field-bg);
+  border: 1px solid var(--field-border);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card :global(.adm-form-item:focus-within .adm-form-item-child) {
+  border-color: var(--field-focus);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.card :global(.adm-input) {
+  flex: 1;
+  --font-size: 16px;
+  --color: var(--text-primary);
+  --placeholder-color: var(--text-secondary);
+  --background-color: transparent;
+}
+
+.card :global(.adm-input-element) {
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--text-primary) !important;
+  -webkit-text-fill-color: var(--text-primary);
+  caret-color: var(--accent);
+  background: transparent !important;
+  background-clip: padding-box;
+  border-radius: 4px;
+}
+
+/**
+ * WebKit / iOS 自动填充会给 input 铺浅色底，必须用 inset box-shadow「盖住」
+ * 并强制浅色字，否则会出现截图里的白底黑字。
+ */
+.card :global(.adm-input-element:-webkit-autofill),
+.card :global(.adm-input-element:-webkit-autofill:hover),
+.card :global(.adm-input-element:-webkit-autofill:focus),
+.card :global(.adm-input-element:-webkit-autofill:active) {
+  -webkit-text-fill-color: var(--text-primary) !important;
+  caret-color: var(--accent);
+  box-shadow: 0 0 0 1000px var(--field-bg-solid) inset !important;
+  transition: background-color 99999s ease-out 0s;
+}
+
+.card :global(.adm-form-footer) {
+  padding: 8px 0 0;
+}
+
+.submit {
+  height: 50px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
+}
+
+.hint {
+  margin: 16px 0 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-secondary);
+  opacity: 0.85;
+  line-height: 1.45;
+}
