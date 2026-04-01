@@ -1,4 +1,4 @@
-/** GeoJSON 几何（world.json 子集） */
+/** GeoJSON geometry (subset of world.json) */
 type Ring = number[][];
 type GeoJsonGeom =
   | { type: 'Polygon'; coordinates: Ring[] }
@@ -44,7 +44,7 @@ function geometryCentroid(geom: GeoJsonGeom): [number, number] | null {
   return null;
 }
 
-/** 常见国家/地区别名 → world.json 中的 properties.name */
+/** Common country/region aliases → properties.name in world.json */
 const COUNTRY_NAME_ALIASES: Record<string, string> = {
   US: 'United States',
   USA: 'United States',
@@ -76,7 +76,7 @@ function normalizePrivate(name: string): boolean {
 }
 
 /**
- * 从 ECharts world.json 构建 英文名 → 首都/质心 [lng, lat]
+ * Build map English name → capital/centroid [lng, lat] from ECharts world.json
  */
 export function buildCountryCenters(worldGeo: {
   features: Array<{ properties?: { name?: string }; geometry: GeoJsonGeom }>;
@@ -91,7 +91,7 @@ export function buildCountryCenters(worldGeo: {
   return m;
 }
 
-/** 将接口里的国家/地区字符串解析为 world.json 中的 properties.name */
+/** Map API country/region string to properties.name in world.json */
 export function resolveGeoName(
   country: string,
   centers: Map<string, [number, number]>,
@@ -119,7 +119,7 @@ export function resolveCenter(
   return name ? centers.get(name)! : null;
 }
 
-/** 按来源国汇总流量（用于地图填色），对齐 PC formatData 的 groupBy fromName 思路 */
+/** Sum traffic by source country for map coloring (same groupBy-fromName idea as PC formatData) */
 export function aggregateSourceCountryBytes(
   list: TrafficMapRow[],
   centers: Map<string, [number, number]>,

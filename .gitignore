@@ -1,0 +1,2 @@
+# Desktop `pc/` app: separate repository; exclude from this monorepo’s commits
+/pc/

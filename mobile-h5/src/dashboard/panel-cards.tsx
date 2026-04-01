@@ -87,7 +87,7 @@ export function GreetingCard() {
       try {
         const body = await fetchCurrentUser();
         if (!isApiSuccess(body)) {
-          throw new Error(body.message || '加载用户信息失败');
+          throw new Error(body.message || 'Failed to load user profile');
         }
         const u = body.data;
         if (!cancel && u) {

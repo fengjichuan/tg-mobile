@@ -20,7 +20,7 @@ echarts.use([
 ]);
 
 export type TrafficTrendChartProps = {
-  /** X 轴标签（本地时间简写） */
+  /** X-axis labels (short local time) */
   categories: string[];
   inboundBps: number[];
   outboundBps: number[];
@@ -37,7 +37,7 @@ export function TrafficTrendChart({
   const emptyText = emptyHint ?? t('common.no_data');
   const ref = useRef<HTMLDivElement | null>(null);
 
-  // 与 PC traffic-trends-panel 一致：只要序列有点就渲染（含全 0），仅用空列表判定无数据
+  // Same as PC traffic-trends-panel: render if any series has points (including all zeros); empty list only = no data
   const len = categories.length;
   const hasData =
     len > 0 &&
@@ -144,7 +144,7 @@ export function TrafficTrendChart({
     <div
       ref={ref}
       style={{ width: '100%', height: 220, minHeight: 200 }}
-      aria-label="流量趋势图"
+      aria-label="Traffic trend chart"
     />
   );
 }

@@ -1,8 +1,8 @@
 import type { ApiBody } from '../api/http';
 
 /**
- * 解包 dashboard 类接口的 data：兼容标准 { code, data: T }、双包一层 { data: { data: T } }，
- * 以及少数场景下业务字段在响应根上的情况（与 PC axios 拿到的一致结构）。
+ * Unwrap dashboard `data`: supports { code, data: T }, double wrap { data: { data: T } },
+ * and fields on the response root (same shapes PC axios returns).
  */
 export function unwrapDashboardData<T extends Record<string, unknown>>(
   body: ApiBody<unknown>,

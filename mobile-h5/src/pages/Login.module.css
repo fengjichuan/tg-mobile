@@ -112,7 +112,7 @@
   letter-spacing: 0.02em;
 }
 
-/* antd-mobile Form：去列表分割线、控制间距 */
+/* antd-mobile Form: remove list dividers, tune spacing */
 .card :global(.adm-form) {
   --border-inner: none;
   --border-top: none;
@@ -125,7 +125,7 @@
   --border-inner: none;
   --border-top: none;
   --border-bottom: none;
-  /* 避免 List 默认卡片底与内层输入区叠出「双层盒子」 */
+  /* Avoid List card base stacking with inner inputs as a double box */
   --adm-color-background: transparent;
 }
 
@@ -185,8 +185,8 @@
 }
 
 /**
- * WebKit / iOS 自动填充会给 input 铺浅色底，必须用 inset box-shadow「盖住」
- * 并强制浅色字，否则会出现截图里的白底黑字。
+ * WebKit / iOS autofill paints a light input background; cover with inset box-shadow
+ * and force light text to avoid white background + dark text artifacts.
  */
 .card :global(.adm-input-element:-webkit-autofill),
 .card :global(.adm-input-element:-webkit-autofill:hover),

@@ -11,7 +11,7 @@ export type ApiBody<T = unknown> = {
 
 declare module 'axios' {
   export interface AxiosRequestConfig {
-    /** 不发 Authorization（如登录） */
+    /** Omit Authorization (e.g. login) */
     skipAuth?: boolean;
   }
 }
@@ -60,7 +60,7 @@ http.interceptors.response.use(
   },
 );
 
-/** 与 PC `utils/request` 中 `isSuccessResponse` 一致：2xx 业务码或未返回 code 时视为成功 */
+/** Same as PC `utils/request` `isSuccessResponse`: 2xx business code or missing code counts as success */
 const API_SUCCESS_CODES = new Set([200, 201, 202, 203, 204, 205, 206]);
 
 export function isApiSuccess(body: ApiBody): boolean {
@@ -73,8 +73,8 @@ export function isApiSuccess(body: ApiBody): boolean {
 }
 
 /**
- * 与 PC 端 Qs.stringify + encode 行为接近：值里的 `:` 会变成 `%3A`，避免误以为和 PC「格式不一致」。
- * 语义上与未编码的 query 相同，后端解析结果一致。
+ * Close to PC Qs.stringify + encode: colons in values become `%3A` so behavior matches PC.
+ * Semantics match an unencoded query; backend parses the same.
  */
 function serializeGetParams(params: Record<string, unknown>): string {
   const parts: string[] = [];

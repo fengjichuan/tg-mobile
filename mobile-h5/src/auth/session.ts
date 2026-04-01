@@ -11,7 +11,7 @@ function readCookie(name: string): string | null {
 
 function writeCookie(name: string, value: string): void {
   if (typeof document === 'undefined') return;
-  // 仅用于与 PC 端保持一致的 token 存储；同域不同端口可共享
+  // Same token storage as PC; shared across same site, different ports
   document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; path=/`;
 }
 
@@ -21,7 +21,7 @@ function deleteCookie(name: string): void {
 }
 
 export function getToken(): string | null {
-  // 优先复用 PC 端 token（若用户已在 PC 登录），避免同账号多 token 造成后端上下文差异
+  // Prefer PC token when user already logged in on PC to avoid divergent backend context
   return readCookie(PC_TOKEN_COOKIE) || sessionStorage.getItem(TOKEN_KEY);
 }
 

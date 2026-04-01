@@ -1,0 +1,277 @@
+# tg-mobile monorepo — Cursor AI rules
+
+## Language policy
+
+- **Chat with the user** may be in **Chinese** (中文) when the user prefers it.
+- **Everything in and around code** must be **English**: identifiers, comments, JSDoc, commit messages for this repo, OpenAPI text, `README.md` / `.env.example` notes under **`mobile-h5/`**, **`server/`**, and **repo root**, string literals shown to developers or in logs, and JSON fixture field names where they mirror API contracts. Exception: **locale files** (e.g. `mobile-h5/src/i18n/messages/zh.ts`) contain translated user-facing copy; keys and `en.ts` stay English-oriented as structured.
+
+---
+
+## Workspace scope
+
+| Area | Rules |
+|------|--------|
+| **All front-end** (including `mobile-h5/`) | This file — **Universal front-end rules** below (migrated from `pc/.cursorrules`, PC-only parts removed). |
+| **`server/`** | Universal habits + **Server** section at the end. |
+| **`pc/`** | Everything in this file **plus** **`pc/.cursorrules`** for Umi, MUI, TanStack in PC, `config/routes`, `src/locales` (en/zh/ru), PC ESLint paths, `fluent-*` aliases, `scripts/auto-test`, etc. |
+
+If something conflicts, prefer the **subproject’s** config and docs.
+
+---
+
+## AI work habits
+
+You are a senior front-end developer, expert in **React**, **TypeScript**, and modern web practices: accurate, factual, and careful about reasoning.
+
+- Follow the user’s requirements precisely.
+- Plan step-by-step when useful; then implement.
+- Prefer correct, DRY, complete code — no TODOs or placeholders unless the user asks for a stub.
+- Balance readability, maintainability, and performance.
+- Include required imports and clear names.
+- Stay concise in prose; admit uncertainty instead of guessing.
+
+---
+
+## Universal front-end rules (from `pc/.cursorrules`, PC-specific items removed)
+
+Performance order: **CRITICAL → HIGH → MEDIUM**. Apply higher-impact rules first.
+
+### CRITICAL — Avoid async waterfalls
+
+**1. Parallelize independent async work**
+
+```typescript
+// ❌ WRONG: sequential waterfall
+const user = await fetchUser();
+const posts = await fetchPosts(user.id);
+const comments = await fetchComments();
+
+// ✅ CORRECT: parallel
+const [user, posts, comments] = await Promise.all([
+  fetchUser(),
+  fetchPosts(),
+  fetchComments(),
+]);
+```
+
+**2. Defer `await` until needed**
+
+```typescript
+// ❌ WRONG: await even when branch skips use
+async function getData(condition: boolean) {
+  const user = await fetchUser();
+  if (condition) return user;
+  return null;
+}
+
+// ✅ CORRECT: start work, await only if needed
+async function getData(condition: boolean) {
+  const userPromise = fetchUser();
+  if (condition) return await userPromise;
+  return null;
+}
+```
+
+**3. Deduplicate server reads (when using React Query / similar)**
+
+If the stack uses **TanStack Query** (or equivalent), use it for server state so identical requests dedupe and cache (see also §7).
+
+```typescript
+import { useQuery } from '@tanstack/react-query';
+
+function UserProfile({ userId }: { userId: string }) {
+  const { data: user } = useQuery({
+    queryKey: ['user', userId],
+    queryFn: () => fetchUser(userId),
+    staleTime: 5 * 60 * 1000,
+  });
+  // ...
+}
+```
+
+### CRITICAL — Bundle size
+
+**4. Avoid barrel imports**
+
+```typescript
+// ❌ WRONG
+import { debounce } from 'lodash';
+import { Button, Dialog } from '@/components';
+
+// ✅ CORRECT: direct paths
+import debounce from 'lodash/debounce';
+import Button from '@/components/button';
+import Dialog from '@/components/dialog';
+```
+
+Exception: only when a library’s docs state that the package entry is tree-shake safe (some UI kits are); still prefer direct paths for app-internal modules.
+
+**5. Lazy-load heavy UI**
+
+Use **`React.lazy` + `Suspense`**, or your bundler’s code-splitting API (e.g. Vite dynamic `import()`), not synchronous imports for large editors/charts/maps.
+
+**6. Defer non-critical third-party code**
+
+```typescript
+const loadHeavy = async () => {
+  const mod = await import('heavy-library');
+  return mod.default;
+};
+```
+
+### HIGH — Data fetching
+
+**7. Prefer a query/cache layer for server state** (when available): React Query, SWR, or equivalent — with stable `queryKey`, mutations that invalidate relevant keys.
+
+**8. Debounce/throttle search or high-frequency triggers** (e.g. `lodash/debounce`, or a hook library your project already uses).
+
+**9. Prefetch on user intent** (hover/focus) when using React Query: `queryClient.prefetchQuery(...)`.
+
+### HIGH — Re-renders
+
+**10. Colocate state** — keep state in the subtree that needs it so large siblings do not re-render unnecessarily.
+
+**11. Fine-grained subscriptions** — for Zustand, Redux, or similar, select only the slice you need (e.g. `useStore((s) => s.user)`).
+
+**12. `useMemo` / `useCallback` — use when justified**
+
+- Good: expensive list derivations, stable callbacks passed to **`memo`** children, stable objects as hook dependencies, inline style objects for memoized children.
+- Avoid: trivial math, rarely re-rendering trees, deps that change every render.
+
+### MEDIUM — Rendering
+
+**13. Virtualize long lists** — e.g. `react-virtuoso`, or a data grid that virtualizes rows.
+
+**14. Explicit conditionals**
+
+```typescript
+// ❌ WRONG: can render 0 / false
+{
+  count && <div>Count: {count}</div>;
+}
+
+// ✅ CORRECT
+{
+  count > 0 ? <div>Count: {count}</div> : null;
+}
+```
+
+**15. Optional CSS** — for very long static lists, `content-visibility: auto` can help.
+
+### MEDIUM — TypeScript & structure
+
+**16. Type API responses and domain models** — explicit interfaces/types for payloads and props.
+
+**17. Typed component props** — `FooProps` style, use on the component.
+
+**18. Single responsibility** — split large pages into smaller components/hooks.
+
+**19. Reusable logic in custom hooks** — e.g. `useUserData` wrapping fetch + loading + error.
+
+### Code style
+
+**20. File naming — kebab-case** for files and folders; **`index.tsx` inside a kebab-case folder** is fine. Utilities/hooks: `use-feature-name.ts`, `format-date.ts`. Variables/functions: **camelCase**. Handlers: **`handle*`** prefix.
+
+**21. Components — PascalCase** names; **`ComponentNameProps`** for props; prefer **named exports** for components.
+
+**22. Formatting** — 2 spaces; prefer `const`; early returns; run Prettier if the project uses it.
+
+**22.1 Strict equality** — **`===` / `!==` only**; never `==` / `!=`.
+
+**23. Import order** — external packages → internal aliases → relative; group with a blank line between groups.
+
+**24. Comments** — English only; JSDoc for non-obvious logic; explain **why**, not what.
+
+**25. Accessibility** — semantic HTML; keyboard support; meaningful **`aria-label`** where appropriate (follow each subproject’s i18n policy for visible vs aria text).
+
+**25.1 Git commits** — do **not** add `Co-authored-by:`, `Signed-off-by:`, or other trailers unless the user explicitly requests them.
+
+### Structure conventions (generic)
+
+**26. Folders** — **kebab-case**; singular folder names when it makes sense (`button/` not `buttons/`); group by feature.
+
+**27. URL / route segments** — prefer **kebab-case** paths (`/user-management`) for consistency.
+
+**28. User-visible text** — no hardcoded UI strings in components; use the project i18n system (**`mobile-h5`**: `src/i18n/`; **`pc`**: see `pc/.cursorrules` and `src/locales`). Dot-separated keys where applicable (`page.module.action`).
+
+**29. Linting** — follow each package’s ESLint/TS config; enforce **eqeqeq**; avoid barrel imports per project rules.
+
+**30. State** — server state in a query/cache layer when present; global client state small and focused; avoid huge structures in React state.
+
+**31. Errors** — use error boundaries where appropriate; handle loading and error UI for async data; meaningful error feedback (and logging in English for devs).
+
+**32. Tests** — prefer React Testing Library style (test behavior); colocate **`__tests__`** or `*.test.ts(x)` per project convention; meaningful coverage on critical paths.
+
+### Memory leaks & cleanup (Rule 37 — full intent)
+
+Always clean up in **`useEffect`** (or equivalent):
+
+1. **Timers** — `clearTimeout` / `clearInterval` in cleanup.
+2. **DOM/window listeners** — remove in cleanup.
+3. **Fetch** — **`AbortController`** and abort on unmount; ignore errors after abort.
+4. **Stale closures** — functional updates `setX(prev => ...)` or correct dependency arrays.
+5. **WebSocket / SSE** — close in cleanup.
+6. **Observers** — `disconnect()` in cleanup.
+7. **Subscriptions** — unsubscribe in cleanup.
+
+Also: **`useRef`** for IDs/refs that should not trigger render; avoid storing huge data in state if ref/cache is enough; **`WeakMap`** for ephemeral caches when appropriate; debounce noisy handlers.
+
+**Checklist:** timers cleared, listeners removed, requests aborted, sockets closed, observers disconnected, subscriptions unsubscribed, effect deps correct, no huge state, memoization where expensive work exists.
+
+### Performance checks
+
+- Network waterfall (parallelize independent calls).
+- Bundle size / lazy routes & heavy components (use each app’s analyze script if present).
+- React DevTools Profiler for unnecessary re-renders.
+- Long lists virtualized.
+- DevTools Memory when investigating leaks.
+
+### Core principles
+
+1. **Measure before micro-optimizing**
+2. **Use framework/library features** (query cache, lazy loading) before custom hacks
+3. **Critical path first** — first paint and main interactions
+4. **Readability over tiny optimizations**
+5. **Strong typing** for public APIs and component contracts
+6. **Consistent naming and structure**
+7. **Always release external resources** (timers, listeners, requests)
+
+### References
+
+- [Vercel React Best Practices](https://github.com/vercel-labs/agent-skills/blob/react-best-practices/skills/react-best-practices/SKILL.md)
+- [React](https://react.dev/)
+- [TanStack Query](https://tanstack.com/query/latest) (when used in a subproject)
+
+---
+
+## `mobile-h5/` — Vite + React
+
+**Stack:** Vite 6, React 18, react-router-dom 6, **antd-mobile**, ECharts (on-demand registration), Axios, dayjs, i18n under **`src/i18n/`**.
+
+**Typical layout:** `src/api/`, `src/auth/`, `src/components/`, `src/dashboard/`, `src/i18n/`, `src/pages/`, `src/utils/`.
+
+**API:** browser uses **`/v1/...`**; dev proxy **`VITE_DEV_API_TARGET`** (see `.env.example`). Login **`POST /v1/users/login`**; **`Authorization: <token>`** on other calls (align with PC).
+
+**UI:** mobile-first; match existing theme; register only needed ECharts parts.
+
+Apply all **universal** rules above (waterfalls, barrels, lazy heavy charts, strict `===`, English comments, i18n for visible copy).
+
+---
+
+## `server/` — Fastify mock API
+
+**Stack:** Fastify 5, `@fastify/swagger`, TypeScript, JSON under **`data/store/`**.
+
+**Layout:** `src/routes/` (one route file per path), `src/store/` (one module per JSON basename), `src/lib/` helpers.
+
+Handlers stay thin; OpenAPI in sync with routes; commit **`*.example.json`**, not gitignored runtime JSON.
+
+Use **`async`/`await`**, validate inputs, return envelopes compatible with **`mobile-h5`** / PC.
+
+Apply universal habits: parallel independent IO where relevant, strict equality, English comments and OpenAPI text.
+
+---
+
+## `pc/` — additional rules only in that repo
+
+For **Umi**, **MUI**, **TanStack Query** usage in PC, **`config/routes`**, **`src/locales`** (en/zh/ru), **`fluent-*` aliases**, **MUI import exceptions**, **`.eslintrc*` / `check:import`**, **`scripts/auto-test/.testrules`**, **container vs page folder layout**, and other PC-only details, read and follow **`pc/.cursorrules`** in full.

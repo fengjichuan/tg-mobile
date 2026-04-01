@@ -28,7 +28,7 @@ echarts.use([
 ]);
 
 export type TrafficWorldMapProps = {
-  /** GET /dashboards/traffic-map 返回的 list */
+  /** `list` from GET /dashboards/traffic-map */
   list: TrafficMapRow[] | undefined | null;
 };
 
@@ -137,7 +137,7 @@ export function TrafficWorldMap({ list }: TrafficWorldMapProps) {
       geo: {
         map: 'world',
         roam: true,
-        // 按容器短边百分比铺满可视区，避免默认投影在窄屏上被裁切
+        // Fill viewport by shorter side so default projection is not clipped on narrow screens
         layoutCenter: ['50%', mapData.length > 0 ? '44%' : '50%'],
         layoutSize: mapData.length > 0 ? '82%' : '92%',
         aspectScale: 0.75,

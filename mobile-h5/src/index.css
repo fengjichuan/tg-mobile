@@ -5,12 +5,12 @@
   --text-secondary: #8b9bb4;
   --accent: #3b82f6;
   --field-bg: rgba(12, 18, 30, 0.92);
-  /** WebKit 自动填充「内填色」需实心色，与 field 区域一致 */
+  /** WebKit autofill inner fill must be solid to match field area */
   --field-bg-solid: #0c121e;
   --field-border: rgba(139, 155, 180, 0.22);
   --field-focus: rgba(59, 130, 246, 0.45);
 
-  /* 与页面暗色统一，避免 antd-mobile 默认浅灰底/深字 */
+  /* Match page dark theme; avoid antd-mobile default light gray / dark text */
   --adm-color-primary: var(--accent);
   --adm-color-text: var(--text-primary);
   --adm-color-text-secondary: var(--text-secondary);

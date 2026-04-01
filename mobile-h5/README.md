@@ -1,24 +1,24 @@
 # TG Mobile H5
 
-面向移动端的 **TG 控制台精简版**：登录后进入首页仪表盘（KPI、流量趋势、世界地图、近期活动等），接口形态与 PC 端 Dashboard 对齐，便于同一后端或网关联调。
+A **slim TG console for mobile**: after login, the home dashboard shows KPIs, traffic trends, a world map, recent activity, etc. API shape matches the PC dashboard so you can share one backend or gateway.
 
-## 技术栈
+## Stack
 
-| 类别 | 选型 |
-|------|------|
-| 构建 | Vite 6 + TypeScript |
-| 框架 | React 18、react-router-dom 6 |
-| UI | **antd-mobile**（移动端组件；不沿用 PC 端重型桌面 UI 库，以控制体积与手势体验） |
-| 图表 | ECharts 5（`echarts/core` + 按需注册） |
-| 请求 | Axios，统一 `baseURL`、拦截器与业务成功码判断 |
-| 时间 | dayjs |
-| 文案 | 简易 i18n（`src/i18n/`，含中/英） |
+| Area | Choice |
+|------|--------|
+| Build | Vite 6 + TypeScript |
+| Framework | React 18, react-router-dom 6 |
+| UI | **antd-mobile** (mobile components; not the heavy desktop UI from PC, for bundle size and touch) |
+| Charts | ECharts 5 (`echarts/core` + on-demand registration) |
+| HTTP | Axios with shared `baseURL`, interceptors, and business success checks |
+| Time | dayjs |
+| Copy | Lightweight i18n under `src/i18n/` (Chinese / English) |
 
-## 环境要求
+## Requirements
 
-- Node.js **≥ 18**（与 Vite 6 兼容即可，推荐 **20+**）
+- Node.js **≥ 18** (compatible with Vite 6; **20+** recommended)
 
-## 安装与运行
+## Install and run
 
 ```bash
 cd mobile-h5
@@ -26,78 +26,78 @@ npm install
 npm run dev
 ```
 
-开发服务器默认 **`http://localhost:5174`**（`host: true` 时可用局域网 IP 访问）。浏览器打开控制台输出的地址即可。
+Dev server default: **`http://localhost:5174`** (LAN IP when `host: true`). Use the URL printed in the terminal.
 
 ```bash
-npm run build    # 类型检查 + 生产构建，产物在 dist/
-npm run preview  # 本地预览构建结果
+npm run build    # typecheck + production build → dist/
+npm run preview  # preview build locally
 ```
 
-## 环境变量
+## Environment variables
 
-在 **`mobile-h5` 目录**下创建 `.env` 或 `.env.development`（Vite 按 `mode` 加载）。可复制 **`.env.example`** 为 `.env` 后按需修改。常用项如下：
+Create `.env` or `.env.development` **in the `mobile-h5` folder** (Vite loads by `mode`). Copy **`.env.example`** to `.env` and adjust. Common variables:
 
-| 变量 | 说明 | 默认 / 示例 |
-|------|------|-------------|
-| `VITE_API_PREFIX` | Axios `baseURL`，即所有接口路径前缀 | 未设置时为 **`/v1`**（开发走同源代理） |
-| `VITE_DEV_API_TARGET` | 仅开发：`/v1` 被 Vite 代理到的后端根地址 | 未设置时为 **`http://192.168.44.3:8080`**（见 `vite.config.ts`） |
+| Variable | Description | Default / example |
+|----------|-------------|-------------------|
+| `VITE_API_PREFIX` | Axios `baseURL` (API path prefix) | If unset, **`/v1`** (dev uses same-origin proxy) |
+| `VITE_DEV_API_TARGET` | Dev only: where Vite proxies `/v1` | If unset, **`http://192.168.44.3:8080`** (see `vite.config.ts`) |
 
-**本地联调仓库内 Node Mock 服务**（`../server`）时，可设置：
+**Against the repo’s Node mock** (`../server`):
 
 ```env
 VITE_DEV_API_TARGET=http://127.0.0.1:8080
 ```
 
-更多后端说明见 **[../server/README.md](../server/README.md)**。
+Backend details: **[../server/README.md](../server/README.md)**.
 
-**无 `.env` 时**：`baseURL` 仍为 `/v1`，代理目标为 `vite.config.ts` 中的上述默认 IP，与是否复制示例文件无关。
+**Without `.env`**: `baseURL` stays `/v1`; proxy target is the default IP in `vite.config.ts`, whether or not you copied the example file.
 
-## API 与代理
+## API and proxy
 
-- 浏览器只请求 **`/v1/...`**（与 `VITE_API_PREFIX` 一致），由 Vite 开发服务器转发到 `VITE_DEV_API_TARGET`，避免浏览器直连跨域。
-- 若生产部署将静态页与 API 同域且网关前缀为 `/v1`，可保持 `VITE_API_PREFIX=/v1`；若需直连完整网关 URL，将其设为 `https://your-host/v1` 并**关闭或调整**开发代理策略。
+- The browser calls **`/v1/...`** only (same as `VITE_API_PREFIX`); Vite forwards to `VITE_DEV_API_TARGET` to avoid CORS.
+- If production serves static files and API on the same origin with prefix `/v1`, keep `VITE_API_PREFIX=/v1`. For a full gateway URL, set `https://your-host/v1` and **adjust or disable** the dev proxy.
 
-### 鉴权
+### Auth
 
-- 登录：**`POST /v1/users/login`**（`skipAuth`），与 PC 侧约定一致。
-- 成功后将 `token` 写入 **`sessionStorage`**，并写入 **`tsg-token` Cookie**（`path=/`），便于与 PC 同域共享会话。
-- 其余请求在请求头携带 **`Authorization: <token>`**（与 PC Axios 行为一致，非 `Bearer` 前缀）。
-- 部分业务码或 HTTP **401** 会清空 token 并跳转 **`/login`**（见 `src/api/http.ts`）。
+- Login: **`POST /v1/users/login`** (`skipAuth`), same contract as PC.
+- On success, `token` is stored in **`sessionStorage`** and in the **`tsg-token` Cookie** (`path=/`) for same-site sharing with PC.
+- Other requests send **`Authorization: <token>`** (same as PC Axios, no `Bearer` prefix).
+- Some business codes or HTTP **401** clear the token and redirect to **`/login`** (see `src/api/http.ts`).
 
-### 首页相关接口（示例）
+### Home-related APIs (examples)
 
-与 `src/api/dashboard.ts`、`schema.ts` 等一致，主要包括：
+Aligned with `src/api/dashboard.ts`, `schema.ts`, etc.:
 
-- `GET /dashboards/traffic-overview`、`traffic-summary`、`traffic-map`
-- `GET /dashboards/activity`、`policy-summary`、`firewall-summary`
-- `GET /resources/schema?auditable=true`（近期活动资源类型文案）
-- 其他能力按页面按需扩展（如 `logQuery` 等）
+- `GET /dashboards/traffic-overview`, `traffic-summary`, `traffic-map`
+- `GET /dashboards/activity`, `policy-summary`, `firewall-summary`
+- `GET /resources/schema?auditable=true` (recent activity resource labels)
+- Extend as needed (e.g. `logQuery`)
 
-具体 Mock 数据与路由实现见 **`server`** 工程。
+Mock data and routes live in the **`server`** project.
 
-## 路由
+## Routes
 
-| 路径 | 说明 |
-|------|------|
-| `/` | 重定向（已登录 → `/home`，否则 → `/login`） |
-| `/login` | 登录页 |
-| `/home` | 首页仪表盘（KPI、图表、地图、活动列表等），**无 PC 侧栏/底栏**；右上角退出仅清会话 |
+| Path | Description |
+|------|-------------|
+| `/` | Redirect: logged in → `/home`, else → `/login` |
+| `/login` | Login page |
+| `/home` | Home dashboard (KPIs, charts, map, activity); **no PC sidebar/footer**; top-right logout clears session only |
 
-受保护路由由 **`ProtectedRoute`** 包裹，依赖本地 token 是否存在。
+Protected routes use **`ProtectedRoute`** and depend on a local token.
 
-## 目录结构（摘要）
+## `src/` layout (summary)
 
 ```
 src/
-  api/           # HTTP 封装与各业务 API
-  auth/          # token 读写、Cookie 与 PC 对齐
-  components/    # 通用组件（图表、地图、布局等）
-  dashboard/     # 首页面板与卡片
-  i18n/          # 文案与 Provider
-  utils/         # 时间范围、dashboard 数据解析等工具
+  api/           # HTTP layer and feature APIs
+  auth/          # Token read/write, cookies aligned with PC
+  components/    # Shared UI (charts, map, layout)
+  dashboard/     # Home panels and cards
+  i18n/          # Messages and provider
+  utils/         # Time ranges, dashboard parsing helpers
 ```
 
-## 与 PC 端的关系
+## Relationship to PC
 
-- 接口路径、成功响应结构（`code` / `success` / `data`）、登录与 Authorization 习惯尽量与 PC 对齐，便于共用网关或同一 OpenAPI。
-- UI 与路由独立裁剪，不复制 PC 全量菜单与页面。
+- Paths, success envelope (`code` / `success` / `data`), login, and `Authorization` follow PC where possible for one gateway or OpenAPI.
+- UI and routes are trimmed independently; not a copy of the full PC menu.

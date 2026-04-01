@@ -22,7 +22,7 @@ function isTrendPointArray(arr: unknown): arr is Record<string, unknown>[] {
   return Array.isArray(arr) && arr.length > 0 && looksLikeTrendRow(arr[0]);
 }
 
-/** 在嵌套对象中查找趋势点数组（对齐后端可能用的 list / items / records 等字段名） */
+/** Find trend point array in nested objects (matches backend list / items / records-style keys) */
 function deepFindTrendList(obj: unknown, depth = 0): Record<string, unknown>[] | null {
   if (depth > 10 || obj == null || typeof obj !== 'object') return null;
   if (Array.isArray(obj)) {
@@ -54,7 +54,7 @@ function pickAvgBits(data: unknown): number | undefined {
 }
 
 /**
- * 从 /dashboards/traffic-summary 响应中取出 list 与 avg（兼容嵌套包层、驼峰字段、多种数组字段名）。
+ * Extract list and avg from /dashboards/traffic-summary (nested envelopes, camelCase, varied array keys).
  */
 export function extractTrafficSummaryFromResponse(body: ApiBody<unknown>): {
   list: Record<string, unknown>[];

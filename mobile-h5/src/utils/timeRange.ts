@@ -6,13 +6,13 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 /**
- * 将本地「YYYY-MM-DD HH:mm:ss」按当前系统时区解析，并输出为与 PC 端一致的 UTC ISO 字符串：
- * `YYYY-MM-DDTHH:mm:ssZ`（注意：**不带毫秒**）。
+ * Parse local `YYYY-MM-DD HH:mm:ss` in the system timezone and emit UTC ISO like PC:
+ * `YYYY-MM-DDTHH:mm:ssZ` (**no milliseconds**).
  *
- * 背景：
- * - PC 请求示例：`2026-03-30T08:52:04Z`（可正常返回数据）
- * - H5 之前发的是 `YYYY-MM-DD HH:mm:ss`（URL 中会编码为空格 `+`），导致后端解析/查询窗口与 PC 不一致
- * - 后端对 `...:ss.SSSZ`（带毫秒）可能会 500，因此这里强制无毫秒
+ * Context:
+ * - PC sends e.g. `2026-03-30T08:52:04Z` and gets valid data.
+ * - H5 used to send `YYYY-MM-DD HH:mm:ss` (spaces as `+` in URLs), shifting the query window vs PC.
+ * - Backend may 500 on `...:ss.SSSZ`; we always strip milliseconds.
  */
 export function toApiUtcTimeString(localDateTime: string): string {
   const tz = dayjs.tz.guess();
@@ -22,7 +22,7 @@ export function toApiUtcTimeString(localDateTime: string): string {
     .format('YYYY-MM-DDTHH:mm:ss[Z]');
 }
 
-/** 最近 N 小时的本地起止，格式 yyyy-MM-DD HH:mm:ss */
+/** Last N hours in local time as yyyy-MM-DD HH:mm:ss */
 export function lastHoursLocalRange(hours: number): [string, string] {
   const end = dayjs();
   const start = end.subtract(hours, 'hour');
@@ -32,7 +32,7 @@ export function lastHoursLocalRange(hours: number): [string, string] {
   ];
 }
 
-/** traffic-overview：1D / 7D 等（对齐 PC calculateTimeRange） */
+/** traffic-overview: 1D / 7D / etc. (aligned with PC calculateTimeRange) */
 export function rangeForLabel(
   label: '1D' | '7D' | '1M',
 ): { start: string; end: string } {

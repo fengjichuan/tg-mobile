@@ -1,12 +1,12 @@
 # tg-mobile-api
 
-面向 **mobile-h5** 的轻量 Node 服务：Fastify + OpenAPI（Swagger UI），业务数据以 **JSON 文件** 形式存放在 `data/store/`，便于本地联调与快速改数。
+Lightweight Node service for **mobile-h5**: Fastify + OpenAPI (Swagger UI). Business data lives as **JSON files** under `data/store/` for local integration and quick edits.
 
-## 要求
+## Requirements
 
 - Node.js **≥ 20**
 
-## 安装与运行
+## Install and run
 
 ```bash
 cd server
@@ -14,27 +14,27 @@ npm install
 npm run dev
 ```
 
-默认监听 **`http://0.0.0.0:8080`**（本机访问 `http://127.0.0.1:8080`）。
+Default listen address: **`http://0.0.0.0:8080`** (use `http://127.0.0.1:8080` locally).
 
-生产构建与启动：
+Production:
 
 ```bash
 npm run build
 npm start
 ```
 
-## 环境变量
+## Environment variables
 
-| 变量 | 说明 | 默认 |
-|------|------|------|
-| `PORT` | HTTP 端口 | `8080` |
-| `HOST` | 监听地址 | `0.0.0.0` |
-| `DATA_DIR` | 数据根目录（其下使用 `store/` 子目录存放各接口 JSON） | `server/data` |
-| `PUBLIC_API_ORIGIN` | OpenAPI 文档里「Try it out」使用的服务根 URL（不含路径前缀） | `http://127.0.0.1:<PORT>` |
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `PORT` | HTTP port | `8080` |
+| `HOST` | Bind address | `0.0.0.0` |
+| `DATA_DIR` | Data root (`store/` under it holds per-endpoint JSON) | `server/data` |
+| `PUBLIC_API_ORIGIN` | Service root URL for OpenAPI “Try it out” (no path prefix) | `http://127.0.0.1:<PORT>` |
 
-## 与 H5 联调
+## Integrating with H5
 
-mobile-h5 通过 `VITE_API_PREFIX=/v1` 请求接口，开发环境下由 Vite 代理到后端。将 **`.env`** 中 `VITE_DEV_API_TARGET` 指到本服务即可，例如：
+mobile-h5 calls APIs with `VITE_API_PREFIX=/v1`; Vite proxies to the backend in dev. Point **`VITE_DEV_API_TARGET`** in **`.env`** at this service, e.g.:
 
 ```env
 VITE_DEV_API_TARGET=http://127.0.0.1:8080
@@ -42,33 +42,33 @@ VITE_DEV_API_TARGET=http://127.0.0.1:8080
 
 ## OpenAPI
 
-启动后访问：
+After start:
 
-- **Swagger UI**：`http://127.0.0.1:8080/docs`
-- **规范 JSON**：`http://127.0.0.1:8080/docs/json`
+- **Swagger UI**: `http://127.0.0.1:8080/docs`
+- **OpenAPI JSON**: `http://127.0.0.1:8080/docs/json`
 
-## 目录约定
+## Layout conventions
 
-| 路径 | 说明 |
-|------|------|
-| `src/routes/` | **一路由一文件**，注册完整路径（如 `/v1/dashboards/traffic-overview`） |
-| `src/store/` | **一接口一模块**，只负责读写对应的 `data/store/<basename>.json` |
-| `src/lib/` | 与业务无关的工具（如 JSON 读写、`okEnvelope`） |
-| `data/store/*.example.json` | 各接口的示例数据；若不存在同名 `.json`，首次读取时会从 example 复制 |
-| `scripts/` | 生成部分大型 fixture 的脚本（如流量趋势点列表） |
+| Path | Description |
+|------|-------------|
+| `src/routes/` | **One file per route**, full path (e.g. `/v1/dashboards/traffic-overview`) |
+| `src/store/` | **One module per API**, reads/writes `data/store/<basename>.json` |
+| `src/lib/` | Non-domain helpers (JSON IO, `okEnvelope`) |
+| `data/store/*.example.json` | Sample payloads; if no matching `.json` exists, it is copied from example on first read |
+| `scripts/` | Generators for large fixtures (e.g. traffic trend points) |
 
-运行期生成的 `data/store/*.json`（非 `*.example.json`）默认已加入 `.gitignore`，避免把本地会话与改动提交进仓库。
+Runtime `data/store/*.json` (not `*.example.json`) is **gitignored** so local sessions and edits are not committed.
 
-## 脚本
+## Scripts
 
 ```bash
 npm run generate-fixtures
 ```
 
-会重新生成部分由脚本维护的示例文件（流量摘要、流量地图、资源 schema 等），再按需提交 `*.example.json`。
+Regenerates script-maintained examples (traffic summary, traffic map, resource schema, etc.); commit `*.example.json` as needed.
 
-## 鉴权说明
+## Auth
 
-- **`POST /v1/users/login`**：校验账号并写入 `post_v1_users_login.json` 中的 `sessions`。
-- **`GET /v1/users/-`**：依赖请求头 **`Authorization`**（与登录返回的 `token` 一致，可为裸 token 或 `Bearer <token>`），并从 `get_v1_users_dash.json` 读取用户资料。
-- 其余 **dashboard / resources** 类接口当前为 **公开 mock**，便于无登录调试首页；若需与生产一致，可在对应路由上增加与登录 store 相同的校验逻辑。
+- **`POST /v1/users/login`**: validates credentials and writes `sessions` in `post_v1_users_login.json`.
+- **`GET /v1/users/-`**: requires **`Authorization`** (same `token` as login, bare or `Bearer <token>`); user profile from `get_v1_users_dash.json`.
+- Other **dashboard / resources** routes are **open mocks** for home debugging without login; add the same login-store checks as production if needed.
