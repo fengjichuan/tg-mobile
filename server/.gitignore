@@ -1,0 +1,16 @@
+node_modules/
+dist/
+data/store/post_v1_users_login.json
+data/store/get_v1_users_dash.json
+data/store/get_v1_dashboards_traffic_overview.json
+data/store/get_v1_dashboards_traffic_summary.json
+data/store/get_v1_dashboards_traffic_map.json
+data/store/get_v1_dashboards_activity.json
+data/store/get_v1_dashboards_policy_summary.json
+data/store/get_v1_dashboards_firewall_summary.json
+data/store/get_v1_resources_schema.json
+# legacy (pre store/ layout)
+data/users.json
+data/sessions.json
+data/profiles.json
+data/permissionPresets.json

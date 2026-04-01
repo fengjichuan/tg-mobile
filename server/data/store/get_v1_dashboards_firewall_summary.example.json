@@ -1,0 +1,34 @@
+{
+  "firewall_online_count": 3,
+  "firewall_count": 3,
+  "traffic_channel_count": 11,
+  "list": [
+    {
+      "running": true,
+      "firewall_uuid": "019b25e8-d532-782b-b3e6-8124556caa78",
+      "name": "don't-modify-performance-testing",
+      "expire_time": "1798761599",
+      "model": "R620 G40",
+      "sn": "9800165603191147",
+      "uptime": "11 days 23 hours"
+    },
+    {
+      "running": true,
+      "firewall_uuid": "019aec49-cec0-7693-9268-e3c555ff3eec",
+      "name": "TSG-X-OS-40.40",
+      "expire_time": "1798761599",
+      "model": "R620 G40",
+      "sn": "9800165603191151",
+      "uptime": "4 days 23 hours"
+    },
+    {
+      "running": true,
+      "firewall_uuid": "019aec46-2a5c-7713-8469-a1b067dde97b",
+      "name": "TSG-X-OS-40.39",
+      "expire_time": "1798761599",
+      "model": "R620 G40",
+      "sn": "9800165603247024",
+      "uptime": "4 days 23 hours"
+    }
+  ]
+}

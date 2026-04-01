@@ -1,0 +1,389 @@
+{
+  "total_bytes": 5855192735,
+  "unique_destination_ip": 5544,
+  "unique_source_country": 30,
+  "source_country_list": [
+    "AT",
+    "GB",
+    "MS",
+    "FR",
+    "BE",
+    "CN",
+    "HK",
+    "PH",
+    "AG",
+    "CA",
+    "Private Network",
+    "JP",
+    "ID",
+    "stats_dstip_srccountry_api_src_country",
+    "TW",
+    "intercept_source_country_ui",
+    "NL",
+    "MY",
+    "sec_country_country_include_api",
+    "KR",
+    "SA",
+    "AU",
+    "DE",
+    "CL",
+    "KZ",
+    "IN",
+    "LU",
+    "US",
+    "SG",
+    "IE"
+  ],
+  "list": [
+    {
+      "source_country": "Private Network",
+      "destination_country": "US",
+      "total_bytes": 1270061414,
+      "total_packets": 2327042,
+      "total_sessions": 175128
+    },
+    {
+      "source_country": "Private Network",
+      "destination_country": "Private Network",
+      "total_bytes": 1697807813,
+      "total_packets": 3416060,
+      "total_sessions": 27135
+    },
+    {
+      "source_country": "Private Network",
+      "destination_country": null,
+      "total_bytes": 53384920,
+      "total_packets": 262712,
+      "total_sessions": 26385
+    },
+    {
+      "source_country": "US",
+      "destination_country": "Private Network",
+      "total_bytes": 32095510,
+      "total_packets": 109311,
+      "total_sessions": 16693
+    },
+    {
+      "source_country": "Private Network",
+      "destination_country": "HK",
+      "total_bytes": 1032713410,
+      "total_packets": 1248480,
+      "total_sessions": 11796
+    },
+    {
+      "source_country": "Private Network",
+      "destination_country": "CN",
+      "total_bytes": 151677532,
+      "total_packets": 302096,
+      "total_sessions": 10272
+    },
+    {
+      "source_country": "US",
+      "destination_country": "US",
+      "total_bytes": 62277660,
+      "total_packets": 128830,
+      "total_sessions": 7221
+    },
+    {
+      "source_country": "Private Network",
+      "destination_country": "SG",
+      "total_bytes": 57589268,
+      "total_packets": 106467,
+      "total_sessions": 2770
+    },
+    {
+      "source_country": "Private Network",
+      "destination_country": "JP",
+      "total_bytes": 50071695,
+      "total_packets": 74393,
+      "total_sessions": 1367
+    },
+    {
+      "source_country": "CN",
+      "destination_country": "Private Network",
+      "total_bytes": 34544876,
+      "total_packets": 54045,
+      "total_sessions": 1299
+    },
+    {
+      "source_country": "AT",
+      "destination_country": "PH",
+      "total_bytes": 100000,
+      "total_packets": 500,
+      "total_sessions": 10
+    },
+    {
+      "source_country": "GB",
+      "destination_country": "AG",
+      "total_bytes": 199999,
+      "total_packets": 600,
+      "total_sessions": 11
+    },
+    {
+      "source_country": "MS",
+      "destination_country": "CA",
+      "total_bytes": 299998,
+      "total_packets": 700,
+      "total_sessions": 12
+    },
+    {
+      "source_country": "FR",
+      "destination_country": "Private Network",
+      "total_bytes": 399997,
+      "total_packets": 800,
+      "total_sessions": 13
+    },
+    {
+      "source_country": "BE",
+      "destination_country": "JP",
+      "total_bytes": 499996,
+      "total_packets": 900,
+      "total_sessions": 14
+    },
+    {
+      "source_country": "CN",
+      "destination_country": "ID",
+      "total_bytes": 599995,
+      "total_packets": 1000,
+      "total_sessions": 15
+    },
+    {
+      "source_country": "HK",
+      "destination_country": "stats_dstip_srccountry_api_src_country",
+      "total_bytes": 699994,
+      "total_packets": 1100,
+      "total_sessions": 16
+    },
+    {
+      "source_country": "PH",
+      "destination_country": "TW",
+      "total_bytes": 799993,
+      "total_packets": 1200,
+      "total_sessions": 17
+    },
+    {
+      "source_country": "AG",
+      "destination_country": "intercept_source_country_ui",
+      "total_bytes": 899992,
+      "total_packets": 1300,
+      "total_sessions": 18
+    },
+    {
+      "source_country": "CA",
+      "destination_country": "NL",
+      "total_bytes": 999991,
+      "total_packets": 1400,
+      "total_sessions": 19
+    },
+    {
+      "source_country": "Private Network",
+      "destination_country": "MY",
+      "total_bytes": 1099990,
+      "total_packets": 1500,
+      "total_sessions": 20
+    },
+    {
+      "source_country": "JP",
+      "destination_country": "sec_country_country_include_api",
+      "total_bytes": 1199989,
+      "total_packets": 1600,
+      "total_sessions": 21
+    },
+    {
+      "source_country": "ID",
+      "destination_country": "KR",
+      "total_bytes": 1299988,
+      "total_packets": 1700,
+      "total_sessions": 22
+    },
+    {
+      "source_country": "stats_dstip_srccountry_api_src_country",
+      "destination_country": "SA",
+      "total_bytes": 1399987,
+      "total_packets": 1800,
+      "total_sessions": 23
+    },
+    {
+      "source_country": "TW",
+      "destination_country": "AU",
+      "total_bytes": 1499986,
+      "total_packets": 1900,
+      "total_sessions": 24
+    },
+    {
+      "source_country": "intercept_source_country_ui",
+      "destination_country": "DE",
+      "total_bytes": 1599985,
+      "total_packets": 2000,
+      "total_sessions": 25
+    },
+    {
+      "source_country": "NL",
+      "destination_country": "CL",
+      "total_bytes": 1699984,
+      "total_packets": 2100,
+      "total_sessions": 26
+    },
+    {
+      "source_country": "MY",
+      "destination_country": "KZ",
+      "total_bytes": 1799983,
+      "total_packets": 2200,
+      "total_sessions": 27
+    },
+    {
+      "source_country": "sec_country_country_include_api",
+      "destination_country": "IN",
+      "total_bytes": 1899982,
+      "total_packets": 2300,
+      "total_sessions": 28
+    },
+    {
+      "source_country": "KR",
+      "destination_country": "LU",
+      "total_bytes": 1999981,
+      "total_packets": 2400,
+      "total_sessions": 29
+    },
+    {
+      "source_country": "SA",
+      "destination_country": "US",
+      "total_bytes": 2099980,
+      "total_packets": 2500,
+      "total_sessions": 30
+    },
+    {
+      "source_country": "AU",
+      "destination_country": "SG",
+      "total_bytes": 2199979,
+      "total_packets": 2600,
+      "total_sessions": 31
+    },
+    {
+      "source_country": "DE",
+      "destination_country": "IE",
+      "total_bytes": 2299978,
+      "total_packets": 2700,
+      "total_sessions": 32
+    },
+    {
+      "source_country": "CL",
+      "destination_country": "AT",
+      "total_bytes": 2399977,
+      "total_packets": 2800,
+      "total_sessions": 33
+    },
+    {
+      "source_country": "KZ",
+      "destination_country": "GB",
+      "total_bytes": 2499976,
+      "total_packets": 2900,
+      "total_sessions": 34
+    },
+    {
+      "source_country": "IN",
+      "destination_country": "MS",
+      "total_bytes": 2599975,
+      "total_packets": 3000,
+      "total_sessions": 35
+    },
+    {
+      "source_country": "LU",
+      "destination_country": "FR",
+      "total_bytes": 2699974,
+      "total_packets": 3100,
+      "total_sessions": 36
+    },
+    {
+      "source_country": "US",
+      "destination_country": "BE",
+      "total_bytes": 2799973,
+      "total_packets": 3200,
+      "total_sessions": 37
+    },
+    {
+      "source_country": "SG",
+      "destination_country": "CN",
+      "total_bytes": 2899972,
+      "total_packets": 3300,
+      "total_sessions": 38
+    },
+    {
+      "source_country": "IE",
+      "destination_country": "HK",
+      "total_bytes": 2999971,
+      "total_packets": 3400,
+      "total_sessions": 39
+    },
+    {
+      "source_country": "AT",
+      "destination_country": "PH",
+      "total_bytes": 3099970,
+      "total_packets": 3500,
+      "total_sessions": 40
+    },
+    {
+      "source_country": "GB",
+      "destination_country": "AG",
+      "total_bytes": 3199969,
+      "total_packets": 3600,
+      "total_sessions": 41
+    },
+    {
+      "source_country": "MS",
+      "destination_country": "CA",
+      "total_bytes": 3299968,
+      "total_packets": 3700,
+      "total_sessions": 42
+    },
+    {
+      "source_country": "FR",
+      "destination_country": "Private Network",
+      "total_bytes": 3399967,
+      "total_packets": 3800,
+      "total_sessions": 43
+    },
+    {
+      "source_country": "BE",
+      "destination_country": "JP",
+      "total_bytes": 3499966,
+      "total_packets": 3900,
+      "total_sessions": 44
+    },
+    {
+      "source_country": "CN",
+      "destination_country": "ID",
+      "total_bytes": 3599965,
+      "total_packets": 4000,
+      "total_sessions": 45
+    },
+    {
+      "source_country": "HK",
+      "destination_country": "stats_dstip_srccountry_api_src_country",
+      "total_bytes": 3699964,
+      "total_packets": 4100,
+      "total_sessions": 46
+    },
+    {
+      "source_country": "PH",
+      "destination_country": "TW",
+      "total_bytes": 3799963,
+      "total_packets": 4200,
+      "total_sessions": 47
+    },
+    {
+      "source_country": "AG",
+      "destination_country": "intercept_source_country_ui",
+      "total_bytes": 3899962,
+      "total_packets": 4300,
+      "total_sessions": 48
+    },
+    {
+      "source_country": "CA",
+      "destination_country": "NL",
+      "total_bytes": 3999961,
+      "total_packets": 4400,
+      "total_sessions": 49
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "tg-mobile-api",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "generate-fixtures": "node scripts/generate-traffic-summary-fixture.mjs && node scripts/generate-traffic-map-fixture.mjs && node scripts/generate-resources-schema-fixture.mjs"
+  },
+  "dependencies": {
+    "@fastify/cors": "^10.0.2",
+    "@fastify/swagger": "^9.4.2",
+    "@fastify/swagger-ui": "^5.2.1",
+    "fastify": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "~5.7.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

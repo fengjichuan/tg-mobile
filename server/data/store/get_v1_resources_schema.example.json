@@ -1,0 +1,355 @@
+[
+  {
+    "auditable": true,
+    "linkable": false,
+    "label": "Policy",
+    "type": "rule",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Security Rule",
+    "type": "security",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Proxy Intercept Rule",
+    "type": "proxy_intercept",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Proxy Manipulation Rule",
+    "type": "proxy_manipulation",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Shaping Rule",
+    "type": "shaping",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Statistics Rule",
+    "type": "statistics",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Monitor Rule",
+    "type": "monitor",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Threshold Rule",
+    "type": "threshold",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Mark Rule",
+    "type": "mark",
+    "category": "policy"
+  },
+  {
+    "auditable": true,
+    "linkable": false,
+    "label": "Object",
+    "type": "object",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "IPv4 Object",
+    "type": "ipv4",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "IPv6 Object",
+    "type": "ipv6",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "FQDN Object",
+    "type": "fqdn",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Subscriber ID Object",
+    "type": "subscriberid",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Keyword Object",
+    "type": "keyword",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Regex Object",
+    "type": "regex",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Tag Object",
+    "type": "tag",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Geolocation Object",
+    "type": "geolocation",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "URL Object",
+    "type": "url",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Account Object",
+    "type": "account",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "IMSI Object",
+    "type": "imsi",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "IMEI Object",
+    "type": "imei",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Phone Number Object",
+    "type": "phone_number",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "APN Object",
+    "type": "apn",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Application Object",
+    "type": "application",
+    "category": "policy"
+  },
+  {
+    "auditable": true,
+    "linkable": true,
+    "label": "Application Group Object",
+    "type": "application_group",
+    "category": "policy"
+  },
+  {
+    "auditable": true,
+    "linkable": true,
+    "label": "Tunnel Object",
+    "type": "tunnel",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Interval Object",
+    "type": "interval",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "MPLS Object",
+    "type": "mpls",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "VLAN Object",
+    "type": "vlan",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Time Interval Object",
+    "type": "time_interval",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Port Object",
+    "type": "port",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Subscriber Tag Object",
+    "type": "subscriber_tag",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Cell Global Identity Object",
+    "type": "cell_global_identity",
+    "category": "policy"
+  },
+  {
+    "exportable": true,
+    "auditable": true,
+    "linkable": true,
+    "label": "Flag Object",
+    "type": "flag",
+    "category": "policy"
+  },
+  {
+    "auditable": true,
+    "linkable": true,
+    "label": "Application Signature",
+    "type": "app_signature",
+    "category": "policy"
+  },
+  {
+    "auditable": true,
+    "linkable": true,
+    "label": "Application Field",
+    "type": "app_field",
+    "category": "policy"
+  },
+  {
+    "auditable": true,
+    "linkable": false,
+    "label": "Profile",
+    "type": "profile",
+    "category": "policy"
+  },
+  {
+    "auditable": true,
+    "linkable": true,
+    "label": "Statistics Template Profile",
+    "type": "statistics_template",
+    "category": "policy"
+  },
+  {
+    "auditable": true,
+    "linkable": false,
+    "label": "Policy Link",
+    "type": "policy_link",
+    "category": "policy"
+  },
+  {
+    "auditable": true,
+    "linkable": false,
+    "label": "Dashboard",
+    "type": "dashboard",
+    "category": "dashboard"
+  },
+  {
+    "auditable": true,
+    "linkable": false,
+    "label": "Dashboard Panel",
+    "type": "dashboard_panel",
+    "category": "dashboard"
+  },
+  {
+    "auditable": true,
+    "linkable": false,
+    "label": "User",
+    "type": "user",
+    "category": "admin"
+  },
+  {
+    "auditable": true,
+    "linkable": false,
+    "label": "Role",
+    "type": "role",
+    "category": "admin"
+  },
+  {
+    "auditable": true,
+    "linkable": false,
+    "label": "Manage Firewalls",
+    "type": "firewall",
+    "category": "firewall"
+  },
+  {
+    "auditable": true,
+    "linkable": false,
+    "label": "Traffic Channel",
+    "type": "traffic_channel",
+    "category": "firewall"
+  }
+]

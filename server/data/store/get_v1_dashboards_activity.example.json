@@ -1,0 +1,192 @@
+{
+  "total": 996603,
+  "page_size": 8,
+  "pages": 124576,
+  "page_no": 1,
+  "list": [
+    {
+      "id": 996733,
+      "op_type": "edit",
+      "resource_type": "statistics",
+      "username": "STATISTICS_API",
+      "user_id": 247,
+      "op_user": {
+        "username": "STATISTICS_API",
+        "id": 247,
+        "name": "STATISTICS_API",
+        "del_flag": false,
+        "enabled": true
+      },
+      "op_time": "2026-04-01T03:24:43Z",
+      "op_result": "{\"uri\":\"/v1/policies/statistics-rules/019d4706-61ca-716a-9023-c8a66a33e78b\",\"code\":200,\"message\":\"Success\",\"elapsed\":44}",
+      "resource_details_bytes": 1110,
+      "resource_id": "019d4706-61ca-716a-9023-c8a66a33e78b",
+      "resource_path": "/v1/policies/statistics-rules/019d4706-61ca-716a-9023-c8a66a33e78b",
+      "resource_name": "stats_srcip_dstip_7_api",
+      "resource_category": "policy",
+      "client_ip": "192.168.64.117",
+      "version": "V.7"
+    },
+    {
+      "id": 996732,
+      "op_type": "edit",
+      "resource_type": "statistics_template",
+      "username": "STATISTICS_API",
+      "user_id": 247,
+      "op_user": {
+        "username": "STATISTICS_API",
+        "id": 247,
+        "name": "STATISTICS_API",
+        "del_flag": false,
+        "enabled": true
+      },
+      "op_time": "2026-04-01T03:24:40Z",
+      "op_result": "{\"uri\":\"/v1/policies/statistics-template-profiles/019d4706-5d79-7425-b187-68faf069dc1e\",\"code\":200,\"message\":\"Success\",\"elapsed\":15}",
+      "resource_details_bytes": 2150,
+      "resource_id": "019d4706-5d79-7425-b187-68faf069dc1e",
+      "resource_path": "/v1/policies/statistics-template-profiles/019d4706-5d79-7425-b187-68faf069dc1e",
+      "resource_name": "stats_srcip_dstip_api_template",
+      "resource_category": "policy",
+      "client_ip": "192.168.64.117",
+      "version": "V.7"
+    },
+    {
+      "id": 996731,
+      "op_type": "edit",
+      "resource_type": "ipv4",
+      "username": "STATISTICS_API",
+      "user_id": 247,
+      "op_user": {
+        "username": "STATISTICS_API",
+        "id": 247,
+        "name": "STATISTICS_API",
+        "del_flag": false,
+        "enabled": true
+      },
+      "op_time": "2026-04-01T03:24:39Z",
+      "op_result": "{\"uri\":\"/v1/policies/ipv4-objects/019d4706-593d-781f-9307-2e488b654bd1\",\"code\":200,\"message\":\"Success\",\"elapsed\":18}",
+      "resource_details_bytes": 876,
+      "resource_id": "019d4706-593d-781f-9307-2e488b654bd1",
+      "resource_path": "/v1/policies/ipv4-objects/019d4706-593d-781f-9307-2e488b654bd1",
+      "resource_name": "stats_srcip_dstip_api_dstip",
+      "resource_category": "policy",
+      "client_ip": "192.168.64.117",
+      "version": "V.7"
+    },
+    {
+      "id": 996730,
+      "op_type": "edit",
+      "resource_type": "keyword",
+      "username": "guoqiuya",
+      "user_id": 16,
+      "op_user": {
+        "username": "guoqiuya",
+        "id": 16,
+        "name": "guoqiuya",
+        "del_flag": false,
+        "enabled": true
+      },
+      "op_time": "2026-04-01T03:24:30Z",
+      "op_result": "{\"uri\":\"/v1/policies/keyword-objects/019d4710-2628-7047-b388-d92bb119d47e\",\"code\":200,\"message\":\"Success\",\"elapsed\":19}",
+      "resource_details_bytes": 872,
+      "resource_id": "019d4710-2628-7047-b388-d92bb119d47e",
+      "resource_path": "/v1/policies/keyword-objects/019d4710-2628-7047-b388-d92bb119d47e",
+      "resource_name": "keyword_create_and_add_item",
+      "resource_category": "policy",
+      "client_ip": "192.168.59.127",
+      "version": "V.2"
+    },
+    {
+      "id": 996729,
+      "op_type": "edit",
+      "resource_type": "statistics",
+      "username": "STATISTICS_API",
+      "user_id": 247,
+      "op_user": {
+        "username": "STATISTICS_API",
+        "id": 247,
+        "name": "STATISTICS_API",
+        "del_flag": false,
+        "enabled": true
+      },
+      "op_time": "2026-04-01T03:22:53Z",
+      "op_result": "{\"uri\":\"/v1/policies/statistics-rules/019d4706-61ca-716a-9023-c8a66a33e78b\",\"code\":200,\"message\":\"Success\",\"elapsed\":42}",
+      "resource_details_bytes": 1110,
+      "resource_id": "019d4706-61ca-716a-9023-c8a66a33e78b",
+      "resource_path": "/v1/policies/statistics-rules/019d4706-61ca-716a-9023-c8a66a33e78b",
+      "resource_name": "stats_srcip_dstip_6_api",
+      "resource_category": "policy",
+      "client_ip": "192.168.64.117",
+      "version": "V.6"
+    },
+    {
+      "id": 996728,
+      "op_type": "edit",
+      "resource_type": "statistics_template",
+      "username": "STATISTICS_API",
+      "user_id": 247,
+      "op_user": {
+        "username": "STATISTICS_API",
+        "id": 247,
+        "name": "STATISTICS_API",
+        "del_flag": false,
+        "enabled": true
+      },
+      "op_time": "2026-04-01T03:22:52Z",
+      "op_result": "{\"uri\":\"/v1/policies/statistics-template-profiles/019d4706-5d79-7425-b187-68faf069dc1e\",\"code\":200,\"message\":\"Success\",\"elapsed\":14}",
+      "resource_details_bytes": 2128,
+      "resource_id": "019d4706-5d79-7425-b187-68faf069dc1e",
+      "resource_path": "/v1/policies/statistics-template-profiles/019d4706-5d79-7425-b187-68faf069dc1e",
+      "resource_name": "stats_srcip_dstip_api_template",
+      "resource_category": "policy",
+      "client_ip": "192.168.64.117",
+      "version": "V.6"
+    },
+    {
+      "id": 996727,
+      "op_type": "edit",
+      "resource_type": "ipv4",
+      "username": "STATISTICS_API",
+      "user_id": 247,
+      "op_user": {
+        "username": "STATISTICS_API",
+        "id": 247,
+        "name": "STATISTICS_API",
+        "del_flag": false,
+        "enabled": true
+      },
+      "op_time": "2026-04-01T03:22:51Z",
+      "op_result": "{\"uri\":\"/v1/policies/ipv4-objects/019d4706-593d-781f-9307-2e488b654bd1\",\"code\":200,\"message\":\"Success\",\"elapsed\":22}",
+      "resource_details_bytes": 871,
+      "resource_id": "019d4706-593d-781f-9307-2e488b654bd1",
+      "resource_path": "/v1/policies/ipv4-objects/019d4706-593d-781f-9307-2e488b654bd1",
+      "resource_name": "stats_srcip_dstip_api_dstip",
+      "resource_category": "policy",
+      "client_ip": "192.168.64.117",
+      "version": "V.6"
+    },
+    {
+      "id": 996726,
+      "op_type": "edit",
+      "resource_type": "policy_link",
+      "username": "guoqiuya",
+      "user_id": 16,
+      "op_user": {
+        "username": "guoqiuya",
+        "id": 16,
+        "name": "guoqiuya",
+        "del_flag": false,
+        "enabled": true
+      },
+      "op_time": "2026-04-01T03:22:47Z",
+      "op_result": " {\"code\":200,\"message\":\"Success\"}",
+      "resource_details_bytes": 954,
+      "resource_id": "019d4710-aa9e-7569-8b9e-7d8efa66d95e",
+      "resource_path": "/v1/policies/connectors/policy-links/019d4710-aa9e-7569-8b9e-7d8efa66d95e",
+      "resource_name": "keyword_create_and_add_item",
+      "resource_category": "policy",
+      "client_ip": "192.168.59.127",
+      "version": "V.2"
+    }
+  ]
+}

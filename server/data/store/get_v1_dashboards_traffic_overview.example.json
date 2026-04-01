@@ -1,0 +1,36 @@
+{
+  "real_time_traffic": {
+    "avg_in_bits_per_sec": 36756.8,
+    "avg_out_bits_per_sec": 36062.4,
+    "avg_bits_per_sec": 72819.2,
+    "avg_in_bytes_per_sec": 4594.6,
+    "avg_out_bytes_per_sec": 4507.8,
+    "avg_bytes_per_sec": 9102.4,
+    "avg_in_packets_per_sec": 28.4,
+    "avg_out_packets_per_sec": 32.2,
+    "avg_packets_per_sec": 60.6,
+    "avg_sessions_per_sec": 5,
+    "active_sessions": 111
+  },
+  "new_sessions": {
+    "avg_sessions_per_sec": 4,
+    "max_sessions_per_sec": 16,
+    "min_sessions_per_sec": 0,
+    "current_sessions_per_sec": 5
+  },
+  "denied_domains": {
+    "current_denied_domains": 0
+  },
+  "active_sessions": {
+    "avg_active_sessions": 165,
+    "max_active_sessions": 2222,
+    "min_active_sessions": 80,
+    "current_active_sessions": 111
+  },
+  "denied_sessions": {
+    "current_denied_sessions": 4
+  },
+  "denied_ips": {
+    "current_denied_ips": 1
+  }
+}

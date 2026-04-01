@@ -1,0 +1,233 @@
+{
+  "object_usage": [
+    {
+      "object_type": "cell_global_identity",
+      "object_count": 3,
+      "item_limit": 10000,
+      "item_count": 4
+    },
+    {
+      "object_type": "flag",
+      "object_count": 2,
+      "item_limit": 1000,
+      "item_count": 2
+    },
+    {
+      "object_type": "fqdn",
+      "object_count": 62,
+      "item_limit": 2500000,
+      "item_count": 67
+    },
+    {
+      "object_type": "subscriberid",
+      "object_count": 2,
+      "item_limit": 100000,
+      "item_count": 3
+    },
+    {
+      "object_type": "imsi",
+      "object_count": 2,
+      "item_limit": 100000,
+      "item_count": 2
+    },
+    {
+      "object_type": "time_interval",
+      "object_count": 7,
+      "item_limit": 10000,
+      "item_count": 9
+    },
+    {
+      "object_type": "url",
+      "object_count": 39,
+      "item_limit": 1000000,
+      "item_count": 39
+    },
+    {
+      "object_type": "subscriber_tag",
+      "object_count": 10,
+      "item_limit": 10000,
+      "item_count": 10
+    },
+    {
+      "object_type": "regex",
+      "object_count": 14,
+      "item_limit": 10000,
+      "item_count": 12
+    },
+    {
+      "object_type": "application_signature",
+      "object_count": 11,
+      "item_limit": 20000,
+      "item_count": 11
+    },
+    {
+      "object_type": "application_field",
+      "object_count": 1,
+      "item_limit": 20000,
+      "item_count": 1
+    },
+    {
+      "object_type": "application_group",
+      "object_count": 2,
+      "item_limit": 20000,
+      "item_count": 2
+    },
+    {
+      "object_type": "application",
+      "object_count": 5,
+      "item_limit": 20000,
+      "item_count": 5
+    },
+    {
+      "object_type": "vlan",
+      "object_count": 10,
+      "item_limit": 10000,
+      "item_count": 13
+    },
+    {
+      "object_type": "ipv4",
+      "object_count": 96,
+      "item_limit": 10000000,
+      "item_count": 98
+    },
+    {
+      "object_type": "port",
+      "object_count": 12,
+      "item_limit": 2500000,
+      "item_count": 14
+    },
+    {
+      "object_type": "ipv6",
+      "object_count": 3,
+      "item_limit": 10000,
+      "item_count": 3
+    },
+    {
+      "object_type": "imei",
+      "object_count": 1,
+      "item_limit": 100000,
+      "item_count": 1
+    },
+    {
+      "object_type": "mpls",
+      "object_count": 4,
+      "item_limit": 10000,
+      "item_count": 3
+    },
+    {
+      "object_type": "interval",
+      "object_count": 7,
+      "item_limit": 100000,
+      "item_count": 7
+    },
+    {
+      "object_type": "phone_number",
+      "object_count": 5,
+      "item_limit": 100000,
+      "item_count": 5
+    },
+    {
+      "object_type": "tag",
+      "object_count": 50,
+      "item_limit": 50000,
+      "item_count": 50
+    },
+    {
+      "object_type": "keyword",
+      "object_count": 6,
+      "item_limit": 1500000,
+      "item_count": 6
+    },
+    {
+      "object_type": "apn",
+      "object_count": 0,
+      "item_limit": 100000,
+      "item_count": 0
+    },
+    {
+      "object_type": "account",
+      "object_count": 8,
+      "item_limit": 100000,
+      "item_count": 8
+    },
+    {
+      "object_type": "tunnel",
+      "object_count": 3,
+      "item_limit": 100000,
+      "item_count": 3
+    },
+    {
+      "object_type": "geolocation",
+      "object_count": 8,
+      "item_limit": 50000,
+      "item_count": 8
+    }
+  ],
+  "library_usage": [
+    {
+      "entry_type": "ipv4",
+      "entry_count": 24,
+      "entry_limit": 1000000
+    },
+    {
+      "entry_type": "fqdn",
+      "entry_count": 7,
+      "entry_limit": 1000000
+    },
+    {
+      "entry_type": "ipv6",
+      "entry_count": 1,
+      "entry_limit": 50000
+    }
+  ],
+  "rule_usage": [
+    {
+      "policy_type": "security",
+      "enable_rule_count": 3,
+      "disable_rule_count": 36,
+      "rule_limit": 65535
+    },
+    {
+      "policy_type": "proxy_intercept",
+      "enable_rule_count": 14,
+      "disable_rule_count": 3,
+      "rule_limit": 65535
+    },
+    {
+      "policy_type": "monitor",
+      "enable_rule_count": 2,
+      "disable_rule_count": 3,
+      "rule_limit": 65535
+    },
+    {
+      "policy_type": "threshold",
+      "enable_rule_count": 1,
+      "disable_rule_count": 5,
+      "rule_limit": 65535
+    },
+    {
+      "policy_type": "proxy_manipulation",
+      "enable_rule_count": 2,
+      "disable_rule_count": 1,
+      "rule_limit": 65535
+    },
+    {
+      "policy_type": "shaping",
+      "enable_rule_count": 0,
+      "disable_rule_count": 1,
+      "rule_limit": 65535
+    },
+    {
+      "policy_type": "mark",
+      "enable_rule_count": 1,
+      "disable_rule_count": 0,
+      "rule_limit": 65535
+    },
+    {
+      "policy_type": "statistics",
+      "enable_rule_count": 3,
+      "disable_rule_count": 7,
+      "rule_limit": 65535
+    }
+  ]
+}
