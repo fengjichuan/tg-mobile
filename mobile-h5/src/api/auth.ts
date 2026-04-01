@@ -1,4 +1,4 @@
-import { http } from './http';
+import { http, isApiSuccess } from './http';
 
 export type LoginResult = {
   token: string;
@@ -17,7 +17,7 @@ export async function loginRequest(
     }>('/users/login', { username, password }, { skipAuth: true });
 
     const body = res.data;
-    if (body.code === 200 && body.data?.token) {
+    if (isApiSuccess(body) && body.data?.token) {
       return { ok: true, data: body.data };
     }
     return {

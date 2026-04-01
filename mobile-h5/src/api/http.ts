@@ -60,9 +60,37 @@ http.interceptors.response.use(
   },
 );
 
+/** 与 PC `utils/request` 中 `isSuccessResponse` 一致：2xx 业务码或未返回 code 时视为成功 */
+const API_SUCCESS_CODES = new Set([200, 201, 202, 203, 204, 205, 206]);
+
 export function isApiSuccess(body: ApiBody): boolean {
   if (body == null) return false;
-  return body.code === 200 || body.success === true;
+  if (body.success === false) return false;
+  if (body.success === true) return true;
+  const c = body.code;
+  if (c === undefined || c === null) return true;
+  return API_SUCCESS_CODES.has(Number(c));
+}
+
+/**
+ * 与 PC 端 Qs.stringify + encode 行为接近：值里的 `:` 会变成 `%3A`，避免误以为和 PC「格式不一致」。
+ * 语义上与未编码的 query 相同，后端解析结果一致。
+ */
+function serializeGetParams(params: Record<string, unknown>): string {
+  const parts: string[] = [];
+  for (const [key, raw] of Object.entries(params)) {
+    if (raw === undefined || raw === null) continue;
+    const k = encodeURIComponent(key);
+    if (Array.isArray(raw)) {
+      for (const item of raw) {
+        if (item === undefined || item === null) continue;
+        parts.push(`${k}=${encodeURIComponent(String(item))}`);
+      }
+    } else {
+      parts.push(`${k}=${encodeURIComponent(String(raw))}`);
+    }
+  }
+  return parts.join('&');
 }
 
 export async function apiGet<T>(
@@ -74,7 +102,7 @@ export async function apiGet<T>(
     ...config,
     params,
     paramsSerializer: {
-      indexes: null,
+      serialize: serializeGetParams,
     },
   });
   return res.data;

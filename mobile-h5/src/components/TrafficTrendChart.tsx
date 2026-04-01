@@ -37,9 +37,12 @@ export function TrafficTrendChart({
   const emptyText = emptyHint ?? t('common.no_data');
   const ref = useRef<HTMLDivElement | null>(null);
 
+  // 与 PC traffic-trends-panel 一致：只要序列有点就渲染（含全 0），仅用空列表判定无数据
+  const len = categories.length;
   const hasData =
-    categories.length > 0 &&
-    (inboundBps.some((v) => v > 0) || outboundBps.some((v) => v > 0));
+    len > 0 &&
+    inboundBps.length === len &&
+    outboundBps.length === len;
 
   useEffect(() => {
     const el = ref.current;

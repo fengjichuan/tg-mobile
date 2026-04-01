@@ -17,7 +17,14 @@ import { queryLogs } from '../api/logQuery';
 import { fetchResourceSchema } from '../api/schema';
 import { fetchCurrentUser } from '../api/user';
 import { TrafficTrendChart } from '../components/TrafficTrendChart';
+import { TrafficWorldMap } from '../components/TrafficWorldMap';
+import type { TrafficMapRow } from '../utils/trafficMapGeo';
 import { useI18n } from '../i18n/i18n';
+import { unwrapDashboardData } from '../utils/dashboardPayload';
+import {
+  extractTrafficSummaryFromResponse,
+  trendRowsToChartSeries,
+} from '../utils/trafficSummary';
 import {
   formatBitsPerSec,
   formatBytes,
@@ -150,10 +157,14 @@ export function TrafficOverviewCard() {
         if (!isApiSuccess(body)) {
           throw new Error(body.message || t('common.request_failed'));
         }
-        const d = body.data as Record<string, any> | undefined;
-        const rt = d?.real_time_traffic;
-        const act = d?.active_sessions;
-        if (!cancel && d) {
+        const d =
+          unwrapDashboardData<Record<string, any>>(body, [
+            'real_time_traffic',
+            'active_sessions',
+          ]) ?? {};
+        const rt = d.real_time_traffic;
+        const act = d.active_sessions;
+        if (!cancel) {
           setStats([
             {
               label: t('traffic.avg_rate'),
@@ -234,19 +245,10 @@ export function TrafficTrendsCard() {
         if (!isApiSuccess(body)) {
           throw new Error(body.message || t('common.request_failed'));
         }
-        const d = body.data as { list?: any[]; avg_bits_per_sec?: number };
+        const { list, avg_bits_per_sec } = extractTrafficSummaryFromResponse(body);
         if (!cancel) {
-          setAvgBits(formatBitsPerSec(d?.avg_bits_per_sec));
-          const list = d?.list || [];
-          setChart({
-            categories: list.map((it: any) =>
-              dayjs(it.stat_time).format('MM-DD HH:mm'),
-            ),
-            inbound: list.map((it: any) => Number(it.avg_in_bits_per_sec) || 0),
-            outbound: list.map(
-              (it: any) => Number(it.avg_out_bits_per_sec) || 0,
-            ),
-          });
+          setAvgBits(formatBitsPerSec(avg_bits_per_sec));
+          setChart(trendRowsToChartSeries(list));
         }
       } catch (e: unknown) {
         if (!cancel) {
@@ -370,6 +372,7 @@ export function TrafficMapCard() {
   const [totalBytes, setTotalBytes] = useState('—');
   const [uniqDest, setUniqDest] = useState('—');
   const [countries, setCountries] = useState(0);
+  const [mapList, setMapList] = useState<TrafficMapRow[]>([]);
 
   useEffect(() => {
     let cancel = false;
@@ -383,8 +386,14 @@ export function TrafficMapCard() {
         if (!isApiSuccess(body)) {
           throw new Error(body.message || t('common.request_failed'));
         }
-        const d = body.data as Record<string, any> | undefined;
-        if (!cancel && d) {
+        const d =
+          unwrapDashboardData<Record<string, any>>(body, [
+            'total_bytes',
+            'source_country_list',
+            'unique_destination_ip',
+            'list',
+          ]) ?? {};
+        if (!cancel) {
           setTotalBytes(formatBytes(d.total_bytes));
           setUniqDest(
             d.unique_destination_ip != null
@@ -395,6 +404,9 @@ export function TrafficMapCard() {
             Array.isArray(d.source_country_list)
               ? d.source_country_list.length
               : 0,
+          );
+          setMapList(
+            Array.isArray(d.list) ? (d.list as TrafficMapRow[]) : [],
           );
         }
       } catch (e: unknown) {
@@ -427,6 +439,7 @@ export function TrafficMapCard() {
           <strong>{countries}</strong>
         </div>
       </div>
+      {!loading && !error ? <TrafficWorldMap list={mapList} /> : null}
     </LoadState>,
   );
 }

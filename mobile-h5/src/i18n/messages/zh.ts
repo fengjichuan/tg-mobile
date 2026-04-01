@@ -44,6 +44,11 @@ export const zh = {
   'traffic.total_traffic': '总流量',
   'traffic.dest_ip_count': '目的 IP 数',
   'traffic.source_country_count': '源国家/地区数',
+  'traffic.map_loading': '世界地图加载中…',
+  'traffic.map_load_failed': '地图加载失败',
+  'traffic.map_tooltip_flow': '流量',
+  'traffic.map_high': '高',
+  'traffic.map_low': '低',
 
   'activity.none': '暂无记录',
   'activity.create': '创建',

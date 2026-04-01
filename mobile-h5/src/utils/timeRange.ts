@@ -1,14 +1,25 @@
 import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 
 dayjs.extend(utc);
+dayjs.extend(timezone);
 
 /**
- * 将本地「YYYY-MM-DD HH:mm:ss」解析为时刻，再格式化为 UTC 的「YYYY-MM-DD HH:mm:ss」。
- * 后端（Java）按 PC 侧约定解析该格式，不接受带 T/Z 的 ISO-8601（否则会 DateTimeParseException index 10）。
+ * 将本地「YYYY-MM-DD HH:mm:ss」按当前系统时区解析，并输出为与 PC 端一致的 UTC ISO 字符串：
+ * `YYYY-MM-DDTHH:mm:ssZ`（注意：**不带毫秒**）。
+ *
+ * 背景：
+ * - PC 请求示例：`2026-03-30T08:52:04Z`（可正常返回数据）
+ * - H5 之前发的是 `YYYY-MM-DD HH:mm:ss`（URL 中会编码为空格 `+`），导致后端解析/查询窗口与 PC 不一致
+ * - 后端对 `...:ss.SSSZ`（带毫秒）可能会 500，因此这里强制无毫秒
  */
 export function toApiUtcTimeString(localDateTime: string): string {
-  return dayjs(localDateTime).utc().format('YYYY-MM-DD HH:mm:ss');
+  const tz = dayjs.tz.guess();
+  return dayjs
+    .tz(localDateTime, 'YYYY-MM-DD HH:mm:ss', tz)
+    .utc()
+    .format('YYYY-MM-DDTHH:mm:ss[Z]');
 }
 
 /** 最近 N 小时的本地起止，格式 yyyy-MM-DD HH:mm:ss */

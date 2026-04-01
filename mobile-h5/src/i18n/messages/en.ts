@@ -45,6 +45,11 @@ export const en = {
   'traffic.total_traffic': 'Total traffic',
   'traffic.dest_ip_count': 'Destination IPs',
   'traffic.source_country_count': 'Source countries/regions',
+  'traffic.map_loading': 'Loading world map…',
+  'traffic.map_load_failed': 'Failed to load map',
+  'traffic.map_tooltip_flow': 'Traffic',
+  'traffic.map_high': 'High',
+  'traffic.map_low': 'Low',
 
   'activity.none': 'No records.',
   'activity.create': 'Create',
